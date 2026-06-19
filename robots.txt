@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ryanstec.github.io/app-m-i-game-com-cn/sitemap.xml

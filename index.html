@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 知识入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #fdf7ed 0%, #fbead1 50%, #f5dbb8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1040px;
+      width: 100%;
+    }
+
+    /* ---------- 顶层 · 稳定入口提示 ---------- */
+    .notice-bar {
+      background: rgba(255, 245, 220, 0.6);
+      backdrop-filter: blur(1.5px);
+      border: 1px solid #f0dbb0;
+      border-radius: 64px;
+      padding: 0.6rem 1.4rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      color: #6d4f2e;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .notice-bar span {
+      background: #dab785;
+      color: #2f241b;
+      border-radius: 20px;
+      padding: 0.1rem 0.8rem;
+      font-weight: 500;
+      margin: 0 0.2rem;
+    }
+
+    /* ---------- hero 区域 — 没有大标题轰炸，温和引导 ---------- */
+    .hero-card {
+      background: #ffffffef;
+      backdrop-filter: blur(3px);
+      border-radius: 28px;
+      padding: 2.8rem 2.2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(130, 90, 50, 0.08), 0 2px 8px rgba(170, 130, 80, 0.05);
+      transition: box-shadow 0.15s;
+    }
+
+    .hero-card p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #3e2e1e;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-card p a {
+      color: #9f6e3c;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid #e7cfb0;
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero-card p a:hover {
+      border-bottom-color: #b48a5a;
+      color: #785a35;
+    }
+
+    .hero-card .sub-meta {
+      display: block;
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+      color: #9b846b;
+      letter-spacing: 0.3px;
+    }
+
+    /* ---------- 目录感 · 卡片网格 ---------- */
+    .directory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .info-card {
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      border-radius: 24px;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(140, 100, 60, 0.04), 0 0 0 1px #f1e3d1 inset;
+      transition: transform 0.1s ease, background 0.1s;
+    }
+
+    .info-card:hover {
+      background: #fffffff2;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(110, 70, 30, 0.06);
+    }
+
+    .info-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4c351f;
+      border-left: 5px solid #e6c49c;
+      padding-left: 0.9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .info-card p, .info-card li {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: #3f3326;
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-card ul li {
+      padding: 0.3rem 0 0.3rem 1.4rem;
+      position: relative;
+    }
+
+    .info-card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #ba946b;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .tag-badge {
+      display: inline-block;
+      background: #f1decb;
+      color: #4d3822;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      margin-top: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* ---------- 说明区 + 提示区 左右双栏 ---------- */
+    .double-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .panel-item {
+      flex: 1 1 300px;
+      background: #fff9f1e0;
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      border: 1px solid #f0deca;
+    }
+
+    .panel-item h4 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #5c412c;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .panel-item p {
+      font-size: 0.98rem;
+      color: #3d3227;
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+
+    .panel-item p:last-child {
+      margin-bottom: 0;
+    }
+
+    .panel-tip {
+      background: #faf1e2;
+      border-radius: 18px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.93rem;
+      color: #4d3b28;
+      border-left: 5px solid #dbb58b;
+    }
+
+    /* ---------- 相关链接区域 ---------- */
+    .related-area {
+      background: #fcf4e9e0;
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #e6d0b8;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .related-area .rel-text {
+      font-size: 0.98rem;
+      color: #3e3226;
+    }
+
+    .related-area .rel-text a {
+      color: #8b653b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #c9b095;
+    }
+
+    .related-area .rel-text a:hover {
+      color: #5f4124;
+      border-bottom-style: solid;
+    }
+
+    .related-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .related-labels span {
+      background: #e9d9c6;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #3b2d1d;
+    }
+
+    /* ---------- 摘要 · 类似 FAQ 但不用问句 ---------- */
+    .summary-block {
+      background: #ffffffd9;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 6px rgba(160, 120, 80, 0.04);
+    }
+
+    .summary-block h5 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #5f4833;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.4px;
+    }
+
+    .summary-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 1.2rem;
+    }
+
+    .summary-item {
+      flex: 1 1 180px;
+      background: #f9efe4;
+      border-radius: 60px;
+      padding: 0.5rem 1.4rem;
+      font-size: 0.9rem;
+      color: #3f3222;
+      line-height: 1.5;
+      border: 1px solid #eedbc8;
+    }
+
+    .summary-item strong {
+      font-weight: 600;
+      color: #684f35;
+    }
+
+    /* ---------- 页脚 ---------- */
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7f6a54;
+      padding: 1.2rem 0 0.3rem;
+      border-top: 1px solid #eadbcb;
+      margin-top: 0.8rem;
+      letter-spacing: 0.2px;
+    }
+
+    .footer-note a {
+      color: #7c5f3f;
+      text-decoration: none;
+      border-bottom: 1px dotted #ccb69b;
+    }
+
+    .footer-note a:hover {
+      border-bottom: 1px solid #8b6c48;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.6rem;
+      }
+      .hero-card {
+        padding: 2rem 1.2rem;
+      }
+      .hero-card p {
+        font-size: 1.05rem;
+      }
+      .directory-grid {
+        gap: 1rem;
+      }
+      .double-panel {
+        flex-direction: column;
+      }
+      .related-area {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .summary-items {
+        flex-direction: column;
+      }
+      .summary-item {
+        border-radius: 28px;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 稳定入口提示条 -->
+  <div class="notice-bar">
+    <span>⏺ 入口</span> 页面内容基于稳定访问路径整理 · 信息索引来自 <strong>爱游戏</strong>
+  </div>
+
+  <!-- hero 温和介绍 -->
+  <div class="hero-card">
+    <p>
+      <a href="https://app-m-i-game.com.cn">爱游戏</a> 是一个持续整合游戏相关知识与服务信息的站点。  
+      本页作为轻量知识库入口，汇集了平台说明、常见背景与相关参考，方便你快速了解整体情况。
+    </p>
+    <span class="sub-meta">—— 目录导览·说明·提示·相关信息 ——</span>
+  </div>
+
+  <!-- 目录感网格：特点与场景等 -->
+  <div class="directory-grid">
+    <div class="info-card">
+      <h3>📌 内容特征</h3>
+      <ul>
+        <li>面向游戏爱好者的信息聚合</li>
+        <li>保持轻量、直接的知识索引</li>
+        <li>围绕“爱游戏”主题，不堆砌冗余</li>
+      </ul>
+      <span class="tag-badge">知识库属性</span>
+    </div>
+    <div class="info-card">
+      <h3>🧩 适用场景</h3>
+      <ul>
+        <li>浏览游戏相关基础说明</li>
+        <li>快速定位常见关注点</li>
+        <li>作为进一步了解的出发点</li>
+      </ul>
+      <span class="tag-badge">参考入口</span>
+    </div>
+    <div class="info-card">
+      <h3>🗂️ 信息构成</h3>
+      <ul>
+        <li>平台概览与方向说明</li>
+        <li>使用提示与注意事项</li>
+        <li>相关标签与参考内容</li>
+      </ul>
+      <span class="tag-badge">结构索引</span>
+    </div>
+  </div>
+
+  <!-- 说明区 + 提示区 双栏 -->
+  <div class="double-panel">
+    <div class="panel-item">
+      <h4>📖 说明</h4>
+      <p>“爱游戏”所指的资源入口，旨在提供相对稳定的访问路径。页面内容均基于公开信息与常识整理，不包含任何非公开或误导性描述。</p>
+      <p>你可以通过上方导航式卡片快速了解整体框架。每个版块都保持简洁，便于按需取用。</p>
+    </div>
+    <div class="panel-item">
+      <h4>💡 提示</h4>
+      <div class="panel-tip">
+        <p>• 本页作为知识索引，不替代具体服务条款。</p>
+        <p>• 如果需要深入了解，建议直接参考源站对应区块。</p>
+        <p>• 链接文本“爱游戏”指向 <a href="https://app-m-i-game.com.cn" style="color:#8b653b; text-decoration:underline; text-underline-offset:3px;">爱游戏</a>，可长期收藏。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 相关信息区 -->
+  <div class="related-area">
+    <div class="rel-text">
+      <span>相关信息：</span>
+      当前页面与 <a href="https://app-m-i-game.com.cn">爱游戏</a> 保持内容方向一致，可作为轻量知识参考入口。
+    </div>
+    <div class="related-labels">
+      <span>#游戏信息</span>
+      <span>#知识索引</span>
+      <span>#说明页</span>
+      <span>#稳定入口</span>
+    </div>
+  </div>
+
+  <!-- 摘要 / FAQ 式内容 -->
+  <div class="summary-block">
+    <h5>📋 常见关注点摘要</h5>
+    <div class="summary-items">
+      <div class="summary-item"><strong>平台性质</strong> · 游戏相关信息聚合</div>
+      <div class="summary-item"><strong>内容形式</strong> · 以说明和索引为主</div>
+      <div class="summary-item"><strong>更新节奏</strong> · 根据需求周期性调整</div>
+      <div class="summary-item"><strong>适合人群</strong> · 游戏爱好者、信息浏览者</div>
+      <div class="summary-item"><strong>入口特点</strong> · 直接、轻量、无诱导</div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    <span>基于知识库入口方向 · 温和索引 · 由 <a href="https://app-m-i-game.com.cn">爱游戏</a> 提供支持</span>
+  </div>
+
+</div>
+</body>
+</html>
