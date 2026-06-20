@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德州扑克 · 杂志专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f7f5f2;
+            font-family: "Georgia", "Times New Roman", "Songti SC", serif;
+            color: #2b2b2b;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+        }
+
+        .page {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* 首页横幅 —— 极简留白 + 书脊感 */
+        .hero {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #d9d2ca;
+            padding-bottom: 1.8rem;
+        }
+
+        .hero-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #9a8e82;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero h1 {
+            font-weight: 400;
+            font-size: 2.8rem;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+            color: #1e1b18;
+        }
+
+        .hero-sub {
+            margin-top: 0.6rem;
+            font-style: italic;
+            color: #6e6258;
+            font-size: 1rem;
+            border-left: 2px solid #c9b7a5;
+            padding-left: 1rem;
+        }
+
+        /* 背景说明卡片 */
+        .context-card {
+            background: #ede9e3;
+            padding: 1.6rem 2rem;
+            border-radius: 2px;
+            margin-bottom: 2.6rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .context-card p {
+            font-size: 1rem;
+            color: #3b342f;
+        }
+
+        .context-card strong {
+            font-weight: 600;
+            color: #1e1b18;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            border-bottom: 1px solid #dad3cb;
+            padding-bottom: 0.3rem;
+            margin: 2.2rem 0 1rem 0;
+            color: #2b2622;
+        }
+
+        .section-title small {
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: #8c7f73;
+            margin-left: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .intro-text {
+            margin-bottom: 1.8rem;
+        }
+
+        .intro-text p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            word-break: break-word;
+        }
+
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .quote-line {
+            font-style: italic;
+            color: #5f554b;
+            padding: 0.6rem 1.2rem;
+            margin: 1.6rem 0;
+            background: #f0ece6;
+            border-left: 3px solid #b7a696;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1.6rem 0 2rem 0;
+        }
+
+        .feature-item {
+            flex: 1 1 180px;
+            background: #ffffff;
+            padding: 1rem 1.2rem;
+            border: 1px solid #e2dad2;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .feature-item h4 {
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+            margin-bottom: 0.3rem;
+            color: #2f2a25;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #5b5249;
+        }
+
+        .faq-mini {
+            margin: 2.2rem 0;
+            padding: 0.6rem 0;
+            border-top: 1px dashed #cfc6bc;
+            border-bottom: 1px dashed #cfc6bc;
+        }
+
+        .faq-mini details {
+            margin: 0.6rem 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #3a332d;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-mini summary::before {
+            content: "▹";
+            margin-right: 0.5rem;
+            color: #9f8e7d;
+            font-size: 0.9rem;
+        }
+
+        .faq-mini details[open] summary::before {
+            content: "▿";
+        }
+
+        .faq-mini .answer {
+            padding: 0.4rem 0 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            color: #4d443c;
+        }
+
+        .footer-note {
+            margin-top: 3.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #dbd3ca;
+            font-size: 0.9rem;
+            color: #71665b;
+            text-align: center;
+        }
+
+        .footer-note a {
+            color: #2b2622;
+            text-decoration: none;
+            border-bottom: 1px dotted #b7a898;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 1px solid #2b2622;
+            color: #000;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .context-card {
+                padding: 1.2rem 1.2rem;
+            }
+            .feature-grid {
+                flex-direction: column;
+            }
+            .feature-item {
+                flex: 1 1 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 首页横幅 -->
+        <div class="hero">
+            <div class="hero-label">Magazine · 专题</div>
+            <h1>牌桌内外</h1>
+            <div class="hero-sub">从一张牌桌到另一种生活节奏</div>
+        </div>
+
+        <!-- 背景说明：网站能做什么 -->
+        <div class="context-card">
+            <p>你打开这个页面，很可能只有一个简单的念头：搞清楚眼前这个叫 <strong>德州扑克</strong> 的网站到底是做什么的。它既不是论坛，也不是教学平台——它是一个帮你快速识别规则、术语、常见打法的信息集合。没有多余的注册门槛，也没有故作高深的教程，一切围绕“如何看懂并开始一场牌局”展开。</p>
+        </div>
+
+        <!-- 三段自然介绍 第一部分 -->
+        <div class="section-title">为什么需要这样的站点<small> · 语境</small></div>
+        <div class="intro-text">
+            <p>很多人第一次接触德州扑克，是在朋友聚会或者影视片段里。看到有人面无表情地推出一堆筹码，有人一脸平静地摊开两张牌，心里冒出的第一个问题往往是：“他们到底在看什么？” 胜负的关键从来不在运气，而在对手的表情、下注的节奏、以及自己手里那两张牌与公共牌的关系。这个网站把上述所有碎片整理成你能直接读懂的条目，从牌型强弱到行动顺序，没有一句废话。</p>
+            <p>网站的设计思路很像一本随身手册——不试图教你怎么赢，而是告诉你游戏是怎么运转的。当你理解了翻牌前、翻牌、转牌、河牌这四个阶段分别意味着什么，你就已经站在了牌桌的入口。</p>
+        </div>
+
+        <!-- 特点卡片（融入杂志感） -->
+        <div class="section-title">快速定位三个板块<small> · 结构</small></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>基本规则</h4>
+                <p>从底牌、公共牌到各轮行动，用最简的文字说明每个阶段该做什么。</p>
+            </div>
+            <div class="feature-item">
+                <h4>术语对照</h4>
+                <p>跟注、加注、弃牌、过牌——以及中文圈常用的叫法，一张表说清楚。</p>
+            </div>
+            <div class="feature-item">
+                <h4>常见牌型</h4>
+                <p>同花顺、四条、葫芦…… 用实际牌例展示大小顺序，看一眼就能记住。</p>
+            </div>
+        </div>
+
+        <!-- 三段自然介绍 第二部分（深度拓展） -->
+        <div class="section-title">信息密度与阅读节奏<small> · 体验</small></div>
+        <div class="intro-text">
+            <p>大多数游戏指南喜欢把规则塞进大段文字里，读两行就让人走神。这个网站刻意把每个知识点拆成短条目，配合简单的牌局场景举例。比如解释“位置”这个概念时，它不会直接扔给你一张座位图，而是告诉你：为什么坐在庄家右侧的人总是最先行动，以及这种顺序怎么影响你的决策。你不需要背任何东西，只需要顺着它的叙述走一遍，核心逻辑就自然浮现了。</p>
+            <p>另外值得一提的是，整个站点的内容都围绕中文使用者的习惯组织。很多外来术语在中文牌桌上被改成了更直观的说法，例如“check”直接叫“过牌”，而“all‑in”就是“全下”。这种处理让新手不用在语言和规则之间来回切换。</p>
+        </div>
+
+        <!-- 小引用 / 气氛片段 -->
+        <div class="quote-line">
+            “最好的入门方式不是看十篇攻略，而是先弄清楚每个人在牌桌上到底在干什么。”
+        </div>
+
+        <!-- 第三段：实际使用场景 -->
+        <div class="section-title">谁会用这个网站<small> · 场景</small></div>
+        <div class="intro-text">
+            <p>也许你正准备参加一个朋友组的局，大家约好打德州扑克，但你还不太确定同花和顺子哪个更大。也许你只是看了一部赌片，对那个押注、加注的过程感到好奇。又或者你是个完全的新手，想在下一次聚会前悄悄做点功课。无论哪一种，这个站都能在十分钟内给你一个清晰的框架。它不会承诺让你成为高手，但能让你在坐上牌桌时不至于茫然。</p>
+            <p>网站的更新很克制，没有铺天盖地的广告，也没有需要注册的社区。它更像一个安静的参考点——你需要的时候打开，翻一翻，心里有数了，就关掉。这正是它和那些喧闹的游戏门户最不同的地方。</p>
+        </div>
+
+        <!-- FAQ 摘要（杂志常见模块） -->
+        <div class="faq-mini">
+            <details>
+                <summary>德州扑克和梭哈是一回事吗？</summary>
+                <div class="answer">不是。梭哈（五张牌）没有公共牌，每人各拿五张，而德州扑克使用五张公共牌，每人两张底牌，组合方式完全不同。</div>
+            </details>
+            <details>
+                <summary>需要先学复杂的概率计算才能玩吗？</summary>
+                <div class="answer">不需要。初期只要记住牌型大小顺序，以及每轮的行动规则就能参与。概率计算是进阶选项，不影响你理解游戏本身。</div>
+            </details>
+            <details>
+                <summary>这个网站有教学视频吗？</summary>
+                <div class="answer">没有。它专注文字说明和规则拆解，适合快速查阅。想看视频演示的话可以配合其他平台，但核心概念这里都写清楚了。</div>
+            </details>
+        </div>
+
+        <!-- 页尾访问提示，自然嵌入链接 -->
+        <div class="footer-note">
+            <p>如果你想从头开始了解规则、术语和牌型顺序，可以直接去 <a href="https://zh-poker-dezhou.com">德州扑克</a> 这个页面。里面没有注册入口，也没有弹窗，只有按章节组织好的内容——翻开就能看，看完就能用。</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: #948a7f;">杂志式索引 · 快速识别</p>
+        </div>
+    </div>
+</body>
+</html>
